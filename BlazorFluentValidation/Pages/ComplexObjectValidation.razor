@@ -1,0 +1,49 @@
+﻿@page "/ComplexObjectValidation"
+
+
+<EditForm Model="book" OnValidSubmit="Save">
+    <FluentValidator Validator="validator" />
+
+    <ValidationSummary />
+    <div class="form-group">
+        <label>Book title</label>
+        <InputText @bind-Value="book.Title" class="form-control" />
+        <ValidationMessage For="() => book.Title" />
+    </div>
+    <br />
+    <button type="button" @onclick="AddChapter" class="btn btn-success">Add Chapter</button>
+    <br />
+    @foreach (var chapter in book.Chapters)
+    {
+        <div class="form-group">
+            <label>Chapter name</label>
+            <InputText @bind-Value="chapter.Name" class="form-control" />
+            <ValidationMessage For="() => chapter.Name" />
+        </div>
+        <div class="form-group">
+            <label>Pages</label>
+            <InputNumber @bind-Value="chapter.Pages" class="form-control" />
+            <ValidationMessage For="() => chapter.Pages" />
+        </div>
+        <br />
+    }
+
+    <p>Total pages: @book.Pages</p>
+
+    <button class="btn btn-primary">Save</button>
+</EditForm>
+
+@code {
+    private Book book = new Book();
+    private BookValidator validator = new BookValidator();
+
+    void AddChapter()
+    {
+        book.Chapters.Add(new Chapter());
+    }
+
+    void Save()
+    {
+
+    }
+}

@@ -1,0 +1,49 @@
+﻿@page "/NestedObjectValidation"
+
+<h3>NestedObjectValidation</h3>
+
+<EditForm Model="order" OnValidSubmit="Save">
+    <FluentValidator Validator="validator" />
+
+    <ValidationSummary />
+    <div class="form-group">
+        <label>Firstname</label>
+        <InputText @bind-Value="order.Customer.FirstName" class="form-control" />
+        <ValidationMessage For="() => order.Customer.FirstName" />
+    </div>
+    <div class="form-group">
+        <label>Lastname</label>
+        <InputText @bind-Value="order.Customer.LastName" class="form-control" />
+        <ValidationMessage For="() => order.Customer.LastName" />
+    </div>
+    <div class="form-group">
+        <label>Product model</label>
+        <InputText @bind-Value="order.Model" class="form-control" />
+        <ValidationMessage For="() => order.Model" />
+    </div>
+    <div class="form-group">
+        <label>Quanity</label>
+        <InputNumber @bind-Value="order.Quanitity" class="form-control" />
+        <ValidationMessage For="() => order.Quanitity" />
+    </div>
+    <div class="form-group">
+        <label>Total</label>
+        <InputNumber @bind-Value="order.Total" class="form-control" />
+        <ValidationMessage For="() => order.Total" />
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+</EditForm>
+
+@code {
+    private Order order = new ();
+    private OrderValidator validator = new OrderValidator();
+
+  
+    // TODO: Add auto validation for nested object attributes
+
+    void Save()
+    {
+
+    }
+}

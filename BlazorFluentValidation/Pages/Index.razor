@@ -1,0 +1,27 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<EditForm Model="customer" OnValidSubmit="SaveCustomer">
+    <FluentValidator Validator="validator" />
+
+    <h3>Your name</h3>
+    <InputText placeholder="First name" @bind-Value="customer.FirstName" class="form-control" />
+    <InputText placeholder="Last name" @bind-Value="customer.LastName" class="form-control" />
+    <ValidationMessage For="@(() => customer.FirstName)" />
+    <ValidationMessage For="@(() => customer.LastName)" />
+
+    <p><button type="submit">Submit</button></p>
+</EditForm>
+
+@code {
+    private Customer customer = new Customer();
+    private CustomerValidator validator = new CustomerValidator();
+
+    void SaveCustomer()
+    {
+        Console.WriteLine("TODO: Actually do something with the valid data");
+    }
+}
