@@ -10,7 +10,7 @@ namespace BlazorFluentValidation.Core.Validators
 {
     public class OrderValidator : AbstractValidator<Order>
     {
-        public OrderValidator()
+        public OrderValidator(IValidator<Customer> customerValidator)
         {
             RuleFor(order => order.Model)
                 .NotEmpty()
@@ -24,7 +24,7 @@ namespace BlazorFluentValidation.Core.Validators
                 .GreaterThan(125.5m);
 
             RuleFor(order => order.Customer)
-                .SetValidator(new CustomerValidator());
+                .SetValidator(customerValidator);
         }
     }
 }

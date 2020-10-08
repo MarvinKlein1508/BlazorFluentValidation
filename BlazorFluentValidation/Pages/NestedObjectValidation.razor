@@ -3,7 +3,7 @@
 <h3>NestedObjectValidation</h3>
 
 <EditForm Model="order" OnValidSubmit="Save">
-    <FluentValidator Validator="validator" />
+    <FluentValidator />
 
     <ValidationSummary />
     <div class="form-group">
@@ -36,11 +36,7 @@
 </EditForm>
 
 @code {
-    private Order order = new ();
-    private OrderValidator validator = new OrderValidator();
-
-  
-    // TODO: Add auto validation for nested object attributes
+    private Order order = new Order();
 
     void Save()
     {

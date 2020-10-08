@@ -1,3 +1,6 @@
+using BlazorFluentValidation.Core.Models;
+using BlazorFluentValidation.Core.Validators;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +30,9 @@ namespace BlazorFluentValidation
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            services.AddTransient<IValidator<Customer>, CustomerValidator>();
+            services.AddValidatorsFromAssemblyContaining<Order>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
